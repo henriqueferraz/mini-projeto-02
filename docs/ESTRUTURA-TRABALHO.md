@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fases 0–3 concluídas; Fases 4–6 pendentes
+**Status do sistema:** Fases 0–4 concluídas; Fases 5–6 pendentes
 
 ---
 
@@ -262,9 +262,9 @@ Seções obrigatórias, tom do texto e regras gerais usadas por `use_tool` / `ge
 - [x] Montar `StateGraph` com edges (stubs iniciais substituídos na Fase 4)
 - [x] CLI: `python3 -m src.main --fonte DEPLOY-001`
 - [x] Testes: `validate_input`, `load_context`, `read_mock_file`
-- [ ] Commit consolidado na Fase 4: `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
+- [x] Commit consolidado na Fase 4: `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 
-**Entrega atual:** esqueleto LangGraph funcional (validate + load reais; analyze/use_tool/generate em stubs).
+**Entrega atual:** fluxo completo ponta a ponta (LLM + fallback heurístico).
 
 **Como rodar (sempre com `.venv` ativo):**
 
@@ -285,14 +285,14 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Objetivo:** critérios 5, 6 e 8.
 
-- [ ] Nó `analyze_data` com prompt de sistema (`src/prompts/system.py`)
-- [ ] Fallback heurístico sem `OPENAI_API_KEY` / falha de API
-- [ ] Nó `use_tool` consulta `templates/relatorio_tecnico.json`
-- [ ] Manter resultados no estado (`messages` / `analysis` / `tool_result`)
-- [ ] Nó `generate_report` consolida, valida seções e grava saída
-- [ ] Rota condicional após `use_tool`
-- [ ] Execuções demonstráveis (origem: DEPLOY/INCIDENTE/SPRINT-001 com LLM; suite cobre as 10 fontes em modo heurístico)
-- [ ] Commit: `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
+- [x] Nó `analyze_data` com prompt de sistema (`src/prompts/system.py`)
+- [x] Fallback heurístico sem `OPENAI_API_KEY` / falha de API
+- [x] Nó `use_tool` consulta `templates/relatorio_tecnico.json`
+- [x] Manter resultados no estado (`messages` / `analysis` / `tool_result`)
+- [x] Nó `generate_report` consolida, valida seções e grava saída
+- [x] Rota condicional após `use_tool`
+- [x] Execuções demonstráveis (origem: DEPLOY/INCIDENTE/SPRINT-001 com LLM; suite cobre as 10 fontes em modo heurístico)
+- [x] Commit: `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 
 **Entrega:** agente demonstrável; exemplos em `examples/saida.md` e `output/`.
 
@@ -333,15 +333,15 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 - [x] `docs: adiciona proposta e slides da ideia`
 - [x] `feat: adiciona mocks e ferramentas de leitura/escrita`
 - [x] `feat: adiciona estado validacao e esqueleto LangGraph`
-- [ ] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
+- [x] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 - [ ] `docs: completa README, prompts, exemplos e checklist de entrega`
 - [ ] `docs: ajusta checklist de entrega e link no README`
 - [ ] `docs: marca commits das fases como resolvidos no checklist`
 
 **Pendências de versão (working tree / a commitar se ainda não versionado):**
 
-- Fase 4: substituir stubs por LLM/heurística, `use_tool` real e `generate_report`
-- Fase 5: documentação completa (prompts, exemplos, README onboarding)
+- Fase 5: documentação completa (prompts, exemplos de entrada, README onboarding)
+- Fase 6: checklist final + submissão AVA
 
 **Entrega final:** link submetido no AVA.
 
@@ -364,15 +364,15 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fases **0–3** — concluídas (estrutura + proposta + mocks + esqueleto LangGraph).
-2. Fases **4 → 5** — pendentes (LLM/relatório → docs).
-3. Fase **6** — push no GitHub + submissão no AVA (após as fases anteriores).
+1. Fases **0–4** — concluídas (agente funcional ponta a ponta).
+2. Fase **5** — pendente (documentação completa).
+3. Fase **6** — push no GitHub + submissão no AVA (após a Fase 5).
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fases 4–5 (LLM/relatório → documentação).
+1. Concluir Fase 5 (documentação).
 2. Versionar e polir (Fase 6) com commits semânticos na `main`.
 3. `git push origin main`.
 4. Testar o link do repositório (acesso público ou liberado ao professor).
@@ -443,12 +443,13 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | 10 fontes mockadas + testes `test_fontes_mocks` | Sim — Fase 2 |
 | Ferramentas `read_mock_file` / `write_report` | Sim — Fase 2 |
 | Estado + `validate_input` + `load_context` + CLI | Sim — Fase 3 |
-| StateGraph com rotas condicionais (stubs Fase 4) | Sim — Fase 3 |
-| LLM + fallback heurístico | Planejado (Fase 4) |
-| Rotas condicionais no grafo | Planejado (Fases 3–4) |
+| StateGraph com rotas condicionais (stubs Fase 4) | Sim — Fase 3 (stubs substituídos na Fase 4) |
+| LLM + fallback heurístico | Sim — Fase 4 |
+| `use_tool` + `generate_report` + saída MD/JSON | Sim — Fase 4 |
+| Rotas condicionais no grafo | Sim — Fases 3–4 |
 | `OPENAI_MODEL` / `.env.example` | Sim (Fase 0) |
 | Obrigatório usar `.venv` | Sim (regras + Fase 3) |
 | README onboarding / troubleshooting | Planejado (Fase 5) |
 | Docstrings Google PT | Planejado (Fases 3–5 + seção 10) |
 | markdownlint no projeto | Arquivos locais presentes; versionar na Fase 5 |
-| Pendência só push + AVA | Não — faltam Fases 4–6 |
+| Pendência só push + AVA | Não — faltam Fases 5–6 |

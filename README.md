@@ -2,7 +2,7 @@
 
 Agente em **LangGraph** que transforma dados técnicos mockados (deploys, incidentes e sprints) em relatórios estruturados e acionáveis.
 
-> Status: Fases 0–3 concluídas. Esqueleto LangGraph + CLI ativos; análise/relatório final entram na Fase 4.
+> Status: Fases 0–4 concluídas. Agente ponta a ponta com LLM/heurística e saída em `output/`. Próximo: documentação (Fase 5).
 
 ## Problema
 
@@ -19,7 +19,7 @@ Automatizar a geração do relatório: validar a entrada, carregar o contexto do
 | Fonte | ID canônico (ex.: `DEPLOY-001`, `INCIDENTE-002`, `SPRINT-003`) **ou** path relativo em `data/mocks/fontes/` |
 | Tipo (opcional) | `deploy`, `incidente` ou `sprint` — se omitido, é inferido pelo prefixo do ID |
 
-Exemplos de CLI (Fase 3+):
+Exemplos de CLI:
 
 ```bash
 source .venv/bin/activate
@@ -28,7 +28,7 @@ python3 -m src.main --fonte INCIDENTE-002 --tipo incidente
 python3 -m src.main --fonte fontes/SPRINT-001.json
 ```
 
-> Na Fase 3, `analyze_data` / `use_tool` / `generate_report` ainda são stubs; o relatório completo chega na Fase 4.
+Com `OPENAI_API_KEY` no `.env` → análise `modo=llm`. Sem chave ou falha de API → `modo=heuristic`. Trechos de saída em [`examples/saida.md`](examples/saida.md).
 
 ## Saída
 
@@ -75,7 +75,7 @@ source .venv/bin/activate  # Linux/macOS
 pip install -e ".[dev]"
 ```
 
-## Uso (agente — Fase 3)
+## Uso (agente)
 
 ```bash
 source .venv/bin/activate
@@ -83,15 +83,7 @@ python3 -m src.main --fonte DEPLOY-001
 python3 -m src.main --fonte DEPLOY-003 --json
 ```
 
-Scaffold legado do pacote `mini_projeto`:
-
-```bash
-mini-projeto
-# ou
-python -m mini_projeto
-```
-
-O CLI completo com geração de relatório (sem stubs) entra na Fase 4.
+Relatórios gerados em `output/` (Markdown + JSON).
 
 ## Testes
 

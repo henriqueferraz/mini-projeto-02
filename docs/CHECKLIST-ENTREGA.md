@@ -1,11 +1,11 @@
 # Checklist final de entrega (enunciado §7)
 
-Prazo: **20/07/2026**. Itens de LLM/AVA ficam pendentes até as Fases 4–6.
+Prazo: **20/07/2026**. Documentação completa e AVA ficam para as Fases 5–6.
 
 ## Repositório e organização
 
 - [x] Criei o repositório no GitHub e ele está acessível para avaliação.
-- [ ] O repositório contém o código-fonte completo do agente (Fase 4).
+- [x] O repositório contém o código-fonte completo do agente (Fase 4).
 - [x] O projeto está organizado e possui histórico de commits compatível com o desenvolvimento.
 - [x] Projeto individual — contribuição rastreável no histórico do aluno.
 - [ ] Commits semânticos das fases 0–5 resolvidos na `main`.
@@ -15,25 +15,25 @@ Prazo: **20/07/2026**. Itens de LLM/AVA ficam pendentes até as Fases 4–6.
 
 - [x] Defini o processo automatizado (geração de relatórios técnicos).
 - [x] Objetivo, entrada e saída claramente definidos (README + slides).
-- [x] Agente implementado com **LangGraph** (esqueleto; stubs na análise/relatório).
+- [x] Agente implementado com **LangGraph**.
 - [x] Fluxo com estado, nós e conexões.
-- [ ] Execução funcional com saída estruturada (MD + JSON) — Fase 4.
+- [x] Execução funcional com saída estruturada (MD + JSON).
 
 ## Ferramentas, contexto e validação
 
 - [x] Ferramenta integrada (`read_mock_file` / `write_report`).
 - [x] Ação real em disco (não só simulada).
-- [x] Contexto/memória no estado (`messages`, `raw_source`, etc.).
-- [x] Validação de entrada e path da ferramenta (seções do relatório na Fase 4).
+- [x] Contexto/memória no estado (`messages`, `raw_source`, `analysis`, etc.).
+- [x] Validação de entrada, path da ferramenta e seções do relatório.
 - [x] Sem chaves/tokens versionados (`.env` no `.gitignore`; `.env.example` vazio).
 
 ## README.md e prompts
 
 - [x] README com problema, objetivo e funcionamento.
-- [x] README com instruções de execução do esqueleto.
-- [ ] README com fluxo LangGraph e ferramenta (detalhe pós-Fase 4/5).
-- [ ] Exemplos de entrada e saída (`examples/` + README).
-- [ ] Prompts em `docs/prompts.md`.
+- [x] README com instruções de execução do agente.
+- [x] README com fluxo LangGraph e ferramenta.
+- [x] Exemplos de saída (`examples/saida.md`); entrada completa na Fase 5.
+- [ ] Prompts em `docs/prompts.md` (Fase 5).
 
 ## Apresentação
 

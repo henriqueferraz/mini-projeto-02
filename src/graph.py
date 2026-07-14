@@ -6,8 +6,10 @@ from typing import Any, Literal
 
 from langgraph.graph import END, START, StateGraph
 
+from nodes.analyze_data import analyze_data
+from nodes.generate_report import generate_report
 from nodes.load_context import load_context
-from nodes.stubs import analyze_data, generate_report, use_tool
+from nodes.use_tool import use_tool
 from nodes.validate_input import validate_input
 from state import AgentState
 
@@ -73,8 +75,8 @@ def _rota_apos_use_tool(
 def build_graph():
     """Constrói e compila o grafo do agente.
 
-    Inclui nós reais de validação/contexto e stubs da Fase 4
-    (``analyze_data``, ``use_tool``, ``generate_report``).
+    Fluxo completo: validação → contexto → análise (LLM/heurística) →
+    template → geração do relatório.
 
     Returns:
         Grafo compilado pronto para ``invoke`` / ``stream``.

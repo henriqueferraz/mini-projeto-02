@@ -1,7 +1,7 @@
 """Configuração de caminhos e helpers de ambiente do agente.
 
-Define diretórios do repositório usados pelas ferramentas de I/O e,
-futuramente, o factory do modelo de chat (Fase 4).
+Define diretórios do repositório usados pelas ferramentas de I/O e o
+factory do modelo de chat (LLM com fallback heurístico).
 """
 
 from __future__ import annotations
@@ -29,8 +29,8 @@ OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 def get_chat_model():
     """Retorna o chat model da OpenAI ou ``None`` se não houver chave.
 
-    Na Fase 3 o contrato já existe; a análise LLM completa entra na Fase 4.
-    Sem ``OPENAI_API_KEY``, o agente usará o fallback heurístico.
+    Com ``OPENAI_API_KEY`` retorna o chat model; sem chave, ``None``
+    (o nó ``analyze_data`` usa fallback heurístico).
 
     Returns:
         Instância de chat model compatível com LangChain, ou ``None``.

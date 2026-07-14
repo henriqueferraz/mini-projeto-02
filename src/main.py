@@ -38,7 +38,7 @@ def _montar_parser() -> argparse.ArgumentParser:
         prog="python3 -m src.main",
         description=(
             "Agente Gerador de Relatórios Técnicos (LangGraph). "
-            "Fase 3: validação + carga de contexto; análise/relatório em stubs."
+            "Análise via LLM (OPENAI_API_KEY) ou fallback heurístico."
         ),
     )
     parser.add_argument(
@@ -94,6 +94,7 @@ def _resumo_estado(estado: dict[str, Any]) -> str:
             f"analysis.modo: {analysis.get('modo', '-')}",
             f"tool_result.status: {tool.get('status', '-')}",
             f"final_report.status: {final.get('status', '-')}",
+            f"arquivos: {final.get('arquivos') or {}}",
             f"mensagens: {len(estado.get('messages') or [])}",
         ]
     )
