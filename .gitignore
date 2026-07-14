@@ -18,6 +18,10 @@ dist/
 build/
 *.egg
 
+# Relatórios gerados em runtime (mantém output/.gitkeep)
+output/*.md
+output/*.json
+
 # Ferramentas / IDE
 .pytest_cache/
 .mypy_cache/
@@ -26,6 +30,7 @@ build/
 htmlcov/
 .vscode/
 .idea/
+.cursor/
 
 # SO
 .DS_Store
