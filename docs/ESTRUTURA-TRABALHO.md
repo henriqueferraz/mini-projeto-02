@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fases 0–5 concluídas; Fase 6 pendente (AVA)
+**Status do sistema:** Fases 0–6 concluídas no repositório; falta apenas submissão no AVA pelo aluno
 
 ---
 
@@ -309,7 +309,7 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 - [x] Revisar Docstrings em todo `src/` (padrão seção 10)
 - [x] Config markdownlint (`.markdownlint.json` + `.markdownlint-cli2.jsonc`)
 - [x] Commit: `docs: completa README, prompts, exemplos e checklist de entrega`
-- [ ] Commits de ajuste: `docs: ajusta checklist…`, `docs: marca commits…` (opcional / Fase 6)
+- [x] Commits de ajuste: `docs: ajusta checklist…`, `docs: marca commits…`
 
 **Entrega:** repo autoexplicativo para novo colaborador.
 
@@ -319,13 +319,13 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Objetivo:** critérios 1, 2 e 7 + checklist do enunciado.
 
-- [ ] Commits semânticos consistentes (`feat:`, `docs:`, `chore:`)
-- [ ] Versionamento na `main` com histórico rastreável
-- [ ] Histórico com commits frequentes (contribuição individual)
-- [ ] Checklist da seção 7 → `docs/CHECKLIST-ENTREGA.md`
-- [ ] Publicar no GitHub (acessível ao professor) — `git push origin main`
-- [ ] Submeter link no AVA **antes de 20/07/2026**
-- [ ] Após entrega: **não alterar o repo** até a nota
+- [x] Commits semânticos consistentes (`feat:`, `docs:`, `chore:`)
+- [x] Versionamento na `main` com histórico rastreável
+- [x] Histórico com commits frequentes (contribuição individual)
+- [x] Checklist da seção 7 → `docs/CHECKLIST-ENTREGA.md`
+- [x] Publicar no GitHub (acessível ao professor) — `git push origin main`
+- [ ] Submeter link no AVA **antes de 20/07/2026** *(ação manual do aluno)*
+- [ ] Após entrega: **não alterar o repo** até a nota *(após submissão no AVA)*
 
 **Commits principais na `main` (histórico):**
 
@@ -335,14 +335,12 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 - [x] `feat: adiciona estado validacao e esqueleto LangGraph`
 - [x] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 - [x] `docs: completa README, prompts, exemplos e checklist de entrega`
-- [ ] `docs: ajusta checklist de entrega e link no README`
-- [ ] `docs: marca commits das fases como resolvidos no checklist`
+- [x] `docs: ajusta checklist de entrega e link no README`
+- [x] `docs: marca commits das fases como resolvidos no checklist`
 
-**Pendências de versão (working tree / a commitar se ainda não versionado):**
+**Pendências de versão:** nenhuma no código — só submissão do link no AVA.
 
-- Fase 6: polimento final + submissão do link no AVA
-
-**Entrega final:** link submetido no AVA.
+**Entrega final:** link submetido no AVA → https://github.com/henriqueferraz/mini-projeto-02
 
 ---
 
@@ -363,18 +361,18 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fases **0–5** — concluídas (agente + documentação).
-2. Fase **6** — push final (se necessário) + submissão no AVA.
+1. Fases **0–6** — concluídas no GitHub (público).
+2. **Pendência do aluno:** submeter o link no AVA até **20/07/2026** e congelar o repo.
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fase 6 (polimento + AVA).
-2. Versionar e polir (Fase 6) com commits semânticos na `main`.
-3. `git push origin main`.
-4. Testar o link do repositório (acesso público ou liberado ao professor).
-5. Submeter o link no AVA e congelar o repo até a nota.
+1. ~~Concluir Fase 6 (polimento)~~ — feito.
+2. ~~`git push origin main`~~ — feito.
+3. Confirmar acesso público: https://github.com/henriqueferraz/mini-projeto-02
+4. Submeter o link no AVA.
+5. Não alterar o repositório após a entrega até a nota.
 
 ---
 
@@ -450,4 +448,4 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | README onboarding / troubleshooting | Sim — Fase 5 |
 | Docstrings Google PT | Sim — Fases 3–5 + seção 10 |
 | markdownlint no projeto | Sim — Fase 5 (arquivos já versionados) |
-| Pendência só push + AVA | Quase — falta só Fase 6 (AVA) |
+| Pendência só push + AVA | Código/docs ok; falta só submissão no AVA pelo aluno |
