@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fase 0 concluída; Fases 1–6 pendentes
+**Status do sistema:** Fases 0–1 concluídas; Fases 2–6 pendentes
 
 ---
 
@@ -223,14 +223,14 @@ Seções obrigatórias, tom do texto e regras gerais usadas por `use_tool` / `ge
 
 **Objetivo:** critério 4.
 
-- [ ] Fechar o case: **geração de relatórios técnicos**
-- [ ] Registrar entrada / saída / etapas no README
-- [ ] Criar até **2 slides** em `docs/apresentacao/`
+- [x] Fechar o case: **geração de relatórios técnicos**
+- [x] Registrar entrada / saída / etapas no README
+- [x] Criar até **2 slides** em `docs/apresentacao/`
 
   - Slide 1: problema + processo + agente
   - Slide 2: entrada, saída, ferramenta, fluxo LangGraph (10 mocks)
 
-- [ ] Commit: `docs: adiciona proposta e slides da ideia`
+- [x] Commit: `docs: adiciona proposta e slides da ideia`
 
 **Entrega:** apresentação pronta.
 
@@ -330,7 +330,7 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 **Commits principais na `main` (histórico):**
 
 - [x] `chore: inicializa estrutura do projeto`
-- [ ] `docs: adiciona proposta e slides da ideia`
+- [x] `docs: adiciona proposta e slides da ideia`
 - [ ] `feat: adiciona mocks e ferramentas de leitura/escrita`
 - [ ] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 - [ ] `docs: completa README, prompts, exemplos e checklist de entrega`
@@ -339,8 +339,7 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Pendências de versão (working tree / a commitar se ainda não versionado):**
 
-- Fases 1–5 ainda não implementadas no código (scaffold + estrutura de pastas da Fase 0)
-- Docs locais em `docs/` (plano, checklist, slides, markdownlint) ainda não versionados
+- Fases 2–5 ainda não implementadas no código (scaffold + estrutura de pastas da Fase 0; proposta/slides da Fase 1)
 - Ampliação futura: 10 fontes + métricas + testes
 
 **Entrega final:** link submetido no AVA.
@@ -364,15 +363,15 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fase **0** — concluída (estrutura versionada na `main`).
-2. Fases **1 → 5** — pendentes (ideia/slides → mocks → LangGraph → LLM → docs).
+1. Fases **0–1** — concluídas (estrutura + proposta/slides).
+2. Fases **2 → 5** — pendentes (mocks → LangGraph → LLM → docs).
 3. Fase **6** — push no GitHub + submissão no AVA (após as fases anteriores).
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fases 1–5 (proposta → mocks → grafo → LLM → documentação).
+1. Concluir Fases 2–5 (mocks → grafo → LLM → documentação).
 2. Versionar e polir (Fase 6) com commits semânticos na `main`.
 3. `git push origin main`.
 4. Testar o link do repositório (acesso público ou liberado ao professor).
@@ -439,6 +438,7 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | Item real no código | Refletido aqui? |
 | --- | --- |
 | Estrutura de pastas + `requirements.txt` + `.env.example` (Fase 0) | Sim — concluída |
+| Proposta + slides (`README` + `docs/apresentacao/slides.md`) | Sim — Fase 1 |
 | 10 fontes mockadas + testes `test_fontes_mocks` | Planejado (Fase 2) |
 | LLM + fallback heurístico | Planejado (Fase 4) |
 | Rotas condicionais no grafo | Planejado (Fases 3–4) |
@@ -447,4 +447,4 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | README onboarding / troubleshooting | Planejado (Fase 5) |
 | Docstrings Google PT | Planejado (Fases 3–5 + seção 10) |
 | markdownlint no projeto | Arquivos locais presentes; versionar na Fase 5 |
-| Pendência só push + AVA | Não — faltam Fases 1–6 |
+| Pendência só push + AVA | Não — faltam Fases 2–6 |

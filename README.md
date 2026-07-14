@@ -1,6 +1,61 @@
-# mini-projeto
+# Agente Gerador de Relatórios Técnicos
 
-Projeto base em Python.
+Agente em **LangGraph** que transforma dados técnicos mockados (deploys, incidentes e sprints) em relatórios estruturados e acionáveis.
+
+> Status: Fase 0 (setup) e Fase 1 (proposta + slides) concluídas. Implementação do fluxo nas fases seguintes — ver `docs/ESTRUTURA-TRABALHO.md`.
+
+## Problema
+
+Logs de deploy, métricas, incidentes e notas de sprint ficam espalhados em arquivos. Escrever um relatório técnico claro, consistente e acionável consome tempo e varia de pessoa para pessoa.
+
+## Objetivo do agente
+
+Automatizar a geração do relatório: validar a entrada, carregar o contexto dos mocks, analisar os dados (LLM ou heurística), consultar o template via ferramenta real e gravar a saída em `output/`.
+
+## Entrada
+
+| Campo | Descrição |
+| --- | --- |
+| Fonte | ID canônico (ex.: `DEPLOY-001`, `INCIDENTE-002`, `SPRINT-003`) **ou** path relativo em `data/mocks/fontes/` |
+| Tipo (opcional) | `deploy`, `incidente` ou `sprint` — se omitido, é inferido pelo prefixo do ID |
+
+Exemplos futuros de CLI (após Fase 3):
+
+```bash
+python3 -m src.main --fonte DEPLOY-001
+python3 -m src.main --fonte INCIDENTE-002 --tipo incidente
+```
+
+## Saída
+
+Relatório técnico em `output/` (Markdown + JSON), contendo no mínimo:
+
+- sumário executivo
+- contexto / fatos relevantes
+- análise técnica
+- riscos e impactos
+- recomendações
+- metadados (fonte, data, tipo, modo de análise, versão do template)
+
+## Etapas do fluxo (LangGraph)
+
+```text
+validate_input → load_context → analyze_data → use_tool → generate_report
+```
+
+1. **validate_input** — valida ID/tipo; rejeita entrada inválida.
+2. **load_context** — lê fonte + métricas mockadas; monta estado/memória.
+3. **analyze_data** — análise via LLM (`OPENAI_API_KEY`) ou fallback heurístico.
+4. **use_tool** — lê o template `data/mocks/templates/relatorio_tecnico.json`.
+5. **generate_report** — valida seções obrigatórias e grava MD + JSON em `output/`.
+
+## Por que é um agente
+
+Tem objetivo claro, estado compartilhado entre nós, fluxo em etapas no LangGraph, usa ferramenta real de arquivo e entrega um relatório útil — não é um único prompt isolado.
+
+## Apresentação (até 2 slides)
+
+Slides da ideia: [`docs/apresentacao/slides.md`](docs/apresentacao/slides.md).
 
 ## Requisitos
 
@@ -16,7 +71,7 @@ source .venv/bin/activate  # Linux/macOS
 pip install -e ".[dev]"
 ```
 
-## Uso
+## Uso (scaffold atual)
 
 ```bash
 mini-projeto
@@ -24,11 +79,21 @@ mini-projeto
 python -m mini_projeto
 ```
 
+O CLI completo do agente (`python3 -m src.main --fonte …`) entra na Fase 3.
+
 ## Testes
 
 ```bash
 pytest
 ```
+
+## Documentação do projeto
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| [`docs/ESTRUTURA-TRABALHO.md`](docs/ESTRUTURA-TRABALHO.md) | Plano de fases e arquitetura |
+| [`docs/apresentacao/slides.md`](docs/apresentacao/slides.md) | Slides da proposta (critério 4) |
+| [`docs/CHECKLIST-ENTREGA.md`](docs/CHECKLIST-ENTREGA.md) | Checklist do enunciado |
 
 ## CI/CD e Conventional Commits
 
