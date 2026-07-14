@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fases 0–2 concluídas; Fases 3–6 pendentes
+**Status do sistema:** Fases 0–3 concluídas; Fases 4–6 pendentes
 
 ---
 
@@ -256,21 +256,21 @@ Seções obrigatórias, tom do texto e regras gerais usadas por `use_tool` / `ge
 
 **Objetivo:** critérios 5 e 8 (parcial → depois completado na Fase 4).
 
-- [ ] Definir `state.py` (TypedDict + `messages` com `add_messages`)
-- [ ] Nó `validate_input`
-- [ ] Nó `load_context` (usa ferramenta de leitura)
-- [ ] Montar `StateGraph` com edges (stubs iniciais substituídos na Fase 4)
-- [ ] CLI: `python3 -m src.main --fonte DEPLOY-001`
-- [ ] Testes: `validate_input`, `load_context`, `read_mock_file`
+- [x] Definir `state.py` (TypedDict + `messages` com `add_messages`)
+- [x] Nó `validate_input`
+- [x] Nó `load_context` (usa ferramenta de leitura)
+- [x] Montar `StateGraph` com edges (stubs iniciais substituídos na Fase 4)
+- [x] CLI: `python3 -m src.main --fonte DEPLOY-001`
+- [x] Testes: `validate_input`, `load_context`, `read_mock_file`
 - [ ] Commit consolidado na Fase 4: `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 
-**Entrega atual:** fluxo completo ponta a ponta (sem stubs).
+**Entrega atual:** esqueleto LangGraph funcional (validate + load reais; analyze/use_tool/generate em stubs).
 
 **Como rodar (sempre com `.venv` ativo):**
 
 ```bash
 source .venv/bin/activate
-which python3   # .../modelo-projeto/.venv/bin/python3
+which python3   # .../mini-projeto-02/.venv/bin/python3
 python3 -m src.main --fonte DEPLOY-001
 python3 -m src.main --fonte DEPLOY-003
 python3 -m pytest tests/ -v
@@ -332,6 +332,7 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 - [x] `chore: inicializa estrutura do projeto`
 - [x] `docs: adiciona proposta e slides da ideia`
 - [x] `feat: adiciona mocks e ferramentas de leitura/escrita`
+- [x] `feat: adiciona estado validacao e esqueleto LangGraph`
 - [ ] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 - [ ] `docs: completa README, prompts, exemplos e checklist de entrega`
 - [ ] `docs: ajusta checklist de entrega e link no README`
@@ -339,8 +340,8 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Pendências de versão (working tree / a commitar se ainda não versionado):**
 
-- Fases 3–5 ainda não implementadas (estado/LangGraph, LLM, documentação completa)
-- Ampliação de fontes/mocks: concluída na Fase 2 (10 fontes)
+- Fase 4: substituir stubs por LLM/heurística, `use_tool` real e `generate_report`
+- Fase 5: documentação completa (prompts, exemplos, README onboarding)
 
 **Entrega final:** link submetido no AVA.
 
@@ -363,15 +364,15 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fases **0–2** — concluídas (estrutura + proposta/slides + mocks/ferramentas).
-2. Fases **3 → 5** — pendentes (LangGraph → LLM → docs).
+1. Fases **0–3** — concluídas (estrutura + proposta + mocks + esqueleto LangGraph).
+2. Fases **4 → 5** — pendentes (LLM/relatório → docs).
 3. Fase **6** — push no GitHub + submissão no AVA (após as fases anteriores).
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fases 3–5 (grafo → LLM → documentação).
+1. Concluir Fases 4–5 (LLM/relatório → documentação).
 2. Versionar e polir (Fase 6) com commits semânticos na `main`.
 3. `git push origin main`.
 4. Testar o link do repositório (acesso público ou liberado ao professor).
@@ -441,6 +442,8 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | Proposta + slides (`README` + `docs/apresentacao/slides.md`) | Sim — Fase 1 |
 | 10 fontes mockadas + testes `test_fontes_mocks` | Sim — Fase 2 |
 | Ferramentas `read_mock_file` / `write_report` | Sim — Fase 2 |
+| Estado + `validate_input` + `load_context` + CLI | Sim — Fase 3 |
+| StateGraph com rotas condicionais (stubs Fase 4) | Sim — Fase 3 |
 | LLM + fallback heurístico | Planejado (Fase 4) |
 | Rotas condicionais no grafo | Planejado (Fases 3–4) |
 | `OPENAI_MODEL` / `.env.example` | Sim (Fase 0) |
@@ -448,4 +451,4 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | README onboarding / troubleshooting | Planejado (Fase 5) |
 | Docstrings Google PT | Planejado (Fases 3–5 + seção 10) |
 | markdownlint no projeto | Arquivos locais presentes; versionar na Fase 5 |
-| Pendência só push + AVA | Não — faltam Fases 3–6 |
+| Pendência só push + AVA | Não — faltam Fases 4–6 |

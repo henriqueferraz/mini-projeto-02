@@ -29,7 +29,7 @@ OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 def get_chat_model():
     """Retorna o chat model da OpenAI ou ``None`` se não houver chave.
 
-    Na Fase 2 apenas o contrato existe; a análise LLM entra na Fase 4.
+    Na Fase 3 o contrato já existe; a análise LLM completa entra na Fase 4.
     Sem ``OPENAI_API_KEY``, o agente usará o fallback heurístico.
 
     Returns:
