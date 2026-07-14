@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fases 0–4 concluídas; Fases 5–6 pendentes
+**Status do sistema:** Fases 0–5 concluídas; Fase 6 pendente (AVA)
 
 ---
 
@@ -302,14 +302,14 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Objetivo:** critério 3.
 
-- [ ] `README.md` completo (onboarding, venv, troubleshooting, decisões, limitações)
-- [ ] `docs/prompts.md` (planejar, implementar, corrigir/melhorar + prompt de sistema)
-- [ ] `examples/entrada.md` e `examples/saida.md` (incluindo tabela das 10 fontes)
-- [ ] Revisar `.env.example` e `.gitignore`
-- [ ] Revisar Docstrings em todo `src/` (padrão seção 10)
-- [ ] Config markdownlint (`.markdownlint.json` + `.markdownlint-cli2.jsonc`)
-- [ ] Commit: `docs: completa README, prompts, exemplos e checklist de entrega`
-- [ ] Commits de ajuste: `docs: ajusta checklist…`, `docs: marca commits…`
+- [x] `README.md` completo (onboarding, venv, troubleshooting, decisões, limitações)
+- [x] `docs/prompts.md` (planejar, implementar, corrigir/melhorar + prompt de sistema)
+- [x] `examples/entrada.md` e `examples/saida.md` (incluindo tabela das 10 fontes)
+- [x] Revisar `.env.example` e `.gitignore`
+- [x] Revisar Docstrings em todo `src/` (padrão seção 10)
+- [x] Config markdownlint (`.markdownlint.json` + `.markdownlint-cli2.jsonc`)
+- [x] Commit: `docs: completa README, prompts, exemplos e checklist de entrega`
+- [ ] Commits de ajuste: `docs: ajusta checklist…`, `docs: marca commits…` (opcional / Fase 6)
 
 **Entrega:** repo autoexplicativo para novo colaborador.
 
@@ -334,14 +334,13 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 - [x] `feat: adiciona mocks e ferramentas de leitura/escrita`
 - [x] `feat: adiciona estado validacao e esqueleto LangGraph`
 - [x] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
-- [ ] `docs: completa README, prompts, exemplos e checklist de entrega`
+- [x] `docs: completa README, prompts, exemplos e checklist de entrega`
 - [ ] `docs: ajusta checklist de entrega e link no README`
 - [ ] `docs: marca commits das fases como resolvidos no checklist`
 
 **Pendências de versão (working tree / a commitar se ainda não versionado):**
 
-- Fase 5: documentação completa (prompts, exemplos de entrada, README onboarding)
-- Fase 6: checklist final + submissão AVA
+- Fase 6: polimento final + submissão do link no AVA
 
 **Entrega final:** link submetido no AVA.
 
@@ -364,15 +363,14 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fases **0–4** — concluídas (agente funcional ponta a ponta).
-2. Fase **5** — pendente (documentação completa).
-3. Fase **6** — push no GitHub + submissão no AVA (após a Fase 5).
+1. Fases **0–5** — concluídas (agente + documentação).
+2. Fase **6** — push final (se necessário) + submissão no AVA.
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fase 5 (documentação).
+1. Concluir Fase 6 (polimento + AVA).
 2. Versionar e polir (Fase 6) com commits semânticos na `main`.
 3. `git push origin main`.
 4. Testar o link do repositório (acesso público ou liberado ao professor).
@@ -449,7 +447,7 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | Rotas condicionais no grafo | Sim — Fases 3–4 |
 | `OPENAI_MODEL` / `.env.example` | Sim (Fase 0) |
 | Obrigatório usar `.venv` | Sim (regras + Fase 3) |
-| README onboarding / troubleshooting | Planejado (Fase 5) |
-| Docstrings Google PT | Planejado (Fases 3–5 + seção 10) |
-| markdownlint no projeto | Arquivos locais presentes; versionar na Fase 5 |
-| Pendência só push + AVA | Não — faltam Fases 5–6 |
+| README onboarding / troubleshooting | Sim — Fase 5 |
+| Docstrings Google PT | Sim — Fases 3–5 + seção 10 |
+| markdownlint no projeto | Sim — Fase 5 (arquivos já versionados) |
+| Pendência só push + AVA | Quase — falta só Fase 6 (AVA) |

@@ -3,6 +3,24 @@
 Trechos gerados pelo agente (`python3 -m src.main --fonte …`).
 Arquivos completos em runtime ficam em `output/` (ignorados pelo Git).
 
+## Fontes cobertas
+
+A suíte `tests/test_graph_e2e.py` executa as **10 fontes** em modo heurístico.
+Abaixo, trechos demonstráveis com `analysis_modo=llm` (requer `OPENAI_API_KEY`).
+
+| ID | Tipo | Arquivo típico em `output/` |
+| --- | --- | --- |
+| `DEPLOY-001` | deploy | `output/DEPLOY-001.md` / `.json` |
+| `DEPLOY-002` | deploy | `output/DEPLOY-002.md` / `.json` |
+| `DEPLOY-003` | deploy | `output/DEPLOY-003.md` / `.json` |
+| `DEPLOY-004` | deploy | `output/DEPLOY-004.md` / `.json` |
+| `INCIDENTE-001` | incidente | `output/INCIDENTE-001.md` / `.json` |
+| `INCIDENTE-002` | incidente | `output/INCIDENTE-002.md` / `.json` |
+| `INCIDENTE-003` | incidente | `output/INCIDENTE-003.md` / `.json` |
+| `SPRINT-001` | sprint | `output/SPRINT-001.md` / `.json` |
+| `SPRINT-002` | sprint | `output/SPRINT-002.md` / `.json` |
+| `SPRINT-003` | sprint | `output/SPRINT-003.md` / `.json` |
+
 ## DEPLOY-001 (`analysis_modo=llm`)
 
 ```markdown
@@ -58,5 +76,5 @@ itens pendentes.
 ## Modo heurístico (sem `OPENAI_API_KEY`)
 
 Sem chave (ou com falha de API), o nó `analyze_data` usa `modo=heuristic` e
-ainda assim grava MD + JSON em `output/`. A suíte de testes cobre as **10 fontes**
-nesse modo.
+ainda assim grava MD + JSON em `output/`. Metadados incluem `analysis_modo`
+e, quando aplicável, `fallback_motivo`.

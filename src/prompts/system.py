@@ -1,5 +1,6 @@
 """Prompts de sistema usados pelos nós de análise do agente."""
 
+# Prompt enviado ao chat model em ``nodes.analyze_data`` (modo=llm).
 SYSTEM_PROMPT_ANALYSIS = """\
 Você é um analista técnico sênior especializado em operações de software
 (deploy, incidentes e sprints). Sua tarefa é analisar dados mockados de uma

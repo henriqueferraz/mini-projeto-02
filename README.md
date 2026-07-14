@@ -2,7 +2,9 @@
 
 Agente em **LangGraph** que transforma dados técnicos mockados (deploys, incidentes e sprints) em relatórios estruturados e acionáveis.
 
-> Status: Fases 0–4 concluídas. Agente ponta a ponta com LLM/heurística e saída em `output/`. Próximo: documentação (Fase 5).
+**Repositório:** [github.com/henriqueferraz/mini-projeto-02](https://github.com/henriqueferraz/mini-projeto-02)
+
+> Status: Fases 0–5 concluídas (agente + documentação). Resta polimento/AVA (Fase 6).
 
 ## Problema
 
@@ -12,124 +14,169 @@ Logs de deploy, métricas, incidentes e notas de sprint ficam espalhados em arqu
 
 Automatizar a geração do relatório: validar a entrada, carregar o contexto dos mocks, analisar os dados (LLM ou heurística), consultar o template via ferramenta real e gravar a saída em `output/`.
 
+## Por que é um agente
+
+Tem objetivo claro, estado compartilhado entre nós, fluxo em etapas no LangGraph, usa ferramenta real de arquivo e entrega um relatório útil — não é um único prompt isolado.
+
+## Início rápido
+
+Requisitos: **Python 3.10+**.
+
+```bash
+git clone https://github.com/henriqueferraz/mini-projeto-02.git
+cd mini-projeto-02
+
+python3 -m venv .venv
+source .venv/bin/activate   # Linux/macOS
+# .venv\Scripts\activate    # Windows
+
+pip install -e ".[dev]"
+# ou: pip install -r requirements.txt && pip install -e ".[dev]"
+
+cp .env.example .env
+# opcional: preencha OPENAI_API_KEY no .env para modo=llm
+```
+
+Sempre execute com o Python do `.venv`:
+
+```bash
+source .venv/bin/activate
+which python3   # deve apontar para .../mini-projeto-02/.venv/bin/python3
+```
+
+### Gerar um relatório
+
+```bash
+python3 -m src.main --fonte DEPLOY-001
+python3 -m src.main --fonte INCIDENTE-002 --tipo incidente
+python3 -m src.main --fonte fontes/SPRINT-001.json --json
+```
+
+Saída em `output/` (`.md` + `.json`). Trechos versionados: [`examples/saida.md`](examples/saida.md).
+
+### Testes
+
+```bash
+pytest
+# ou: pytest tests/ -v
+```
+
 ## Entrada
 
 | Campo | Descrição |
 | --- | --- |
-| Fonte | ID canônico (ex.: `DEPLOY-001`, `INCIDENTE-002`, `SPRINT-003`) **ou** path relativo em `data/mocks/fontes/` |
-| Tipo (opcional) | `deploy`, `incidente` ou `sprint` — se omitido, é inferido pelo prefixo do ID |
+| `--fonte` | ID canônico (`DEPLOY-001`) **ou** path relativo (`fontes/DEPLOY-001.json`) |
+| `--tipo` | Opcional: `deploy`, `incidente` ou `sprint` (inferido pelo prefixo se omitido) |
+| `--json` | Imprime o estado final em JSON (debug) |
 
-Exemplos de CLI:
+Com `OPENAI_API_KEY` no `.env` → análise `modo=llm`. Sem chave ou falha de API → `modo=heuristic`.
 
-```bash
-source .venv/bin/activate
-python3 -m src.main --fonte DEPLOY-001
-python3 -m src.main --fonte INCIDENTE-002 --tipo incidente
-python3 -m src.main --fonte fontes/SPRINT-001.json
-```
-
-Com `OPENAI_API_KEY` no `.env` → análise `modo=llm`. Sem chave ou falha de API → `modo=heuristic`. Trechos de saída em [`examples/saida.md`](examples/saida.md).
+Tabela das 10 fontes: [`examples/entrada.md`](examples/entrada.md).
 
 ## Saída
 
-Relatório técnico em `output/` (Markdown + JSON), contendo no mínimo:
+Relatório técnico em `output/` contendo:
 
 - sumário executivo
 - contexto / fatos relevantes
 - análise técnica
 - riscos e impactos
 - recomendações
-- metadados (fonte, data, tipo, modo de análise, versão do template)
+- metadados (`fonte`, `data`, `tipo`, `analysis_modo`, `template_versao`)
 
-## Etapas do fluxo (LangGraph)
+## Fluxo LangGraph
 
 ```text
 validate_input → load_context → analyze_data → use_tool → generate_report
 ```
 
-1. **validate_input** — valida ID/tipo; rejeita entrada inválida.
-2. **load_context** — lê fonte + métricas mockadas; monta estado/memória.
-3. **analyze_data** — análise via LLM (`OPENAI_API_KEY`) ou fallback heurístico.
-4. **use_tool** — lê o template `data/mocks/templates/relatorio_tecnico.json`.
-5. **generate_report** — valida seções obrigatórias e grava MD + JSON em `output/`.
+| Nó | Função |
+| --- | --- |
+| `validate_input` | Valida ID/tipo; rejeita entrada inválida |
+| `load_context` | Lê fonte + métricas via `read_mock_file` |
+| `analyze_data` | LLM ou fallback heurístico |
+| `use_tool` | Lê `templates/relatorio_tecnico.json` |
+| `generate_report` | Valida seções e grava MD + JSON com `write_report` |
 
-## Por que é um agente
+Rotas condicionais encerram o fluxo cedo se houver erro de validação, carga ou template.
 
-Tem objetivo claro, estado compartilhado entre nós, fluxo em etapas no LangGraph, usa ferramenta real de arquivo e entrega um relatório útil — não é um único prompt isolado.
+## Ferramentas
 
-## Apresentação (até 2 slides)
+| Ferramenta | Papel |
+| --- | --- |
+| `read_mock_file` | Lê JSON em `data/mocks/` (bloqueia path absoluto e `..`) |
+| `write_report` | Grava relatório em `output/` |
 
-Slides da ideia: [`docs/apresentacao/slides.md`](docs/apresentacao/slides.md).
+Mocks = dados fictícios. A ferramenta **age de verdade** no disco.
 
-## Requisitos
+## Estrutura do repositório
 
-- Python 3.10+
-
-## Instalação
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # Linux/macOS
-# .venv\Scripts\activate   # Windows
-
-pip install -e ".[dev]"
+```text
+data/mocks/          # fontes, métricas, template
+src/                 # agente (state, graph, nodes, tools, prompts)
+output/              # relatórios gerados em runtime
+examples/            # entrada/saída documentadas
+docs/                # plano, slides, prompts, checklist
+tests/               # pytest
 ```
 
-## Uso (agente)
+## Variáveis de ambiente
 
-```bash
-source .venv/bin/activate
-python3 -m src.main --fonte DEPLOY-001
-python3 -m src.main --fonte DEPLOY-003 --json
-```
+| Variável | Obrigatória | Descrição |
+| --- | --- | --- |
+| `OPENAI_API_KEY` | Não | Se vazia → modo heurístico |
+| `OPENAI_MODEL` | Não | Padrão: `gpt-4o-mini` |
 
-Relatórios gerados em `output/` (Markdown + JSON).
+Use apenas `.env.example` versionado (nomes, sem secrets). O arquivo `.env` está no `.gitignore`.
 
-## Testes
+## Problemas comuns
 
-```bash
-pytest
-```
+| Sintoma | Causa provável | Solução |
+| --- | --- | --- |
+| `ModuleNotFoundError: No module named 'langgraph'` | `.venv` não ativo | `source .venv/bin/activate` e confirme com `which python3` |
+| `ModuleNotFoundError` em `config` / `nodes` | rodou de outro diretório | execute a partir da raiz do repo: `python3 -m src.main …` |
+| Relatório em modo `heuristic` sem querer | sem chave ou API falhou | preencha `OPENAI_API_KEY` no `.env` |
+| `FileNotFoundError` / fonte inválida | ID inexistente | use um ID da tabela em `examples/entrada.md` |
+| Path rejeitado | absoluto ou com `..` | use ID ou path relativo a `data/mocks/` |
 
-## Documentação do projeto
+## Decisões de projeto
+
+- **Mocks + I/O real:** dados fictícios em JSON; ferramentas leem/escrevem de verdade.
+- **Fallback heurístico:** o agente permanece demonstrável offline / sem crédito de API.
+- **Segurança de path:** leitura restrita a `data/mocks/`.
+- **Estado LangGraph:** memória em `messages` (`add_messages`) + campos tipados em `AgentState`.
+- **Commits na `main`:** projeto individual com histórico semântico por fase.
+
+## Limitações
+
+- Fontes são mockadas (não há integração com APIs reais de deploy/incidente).
+- Qualidade da análise LLM depende do modelo e do prompt em `src/prompts/system.py`.
+- Heurística é determinística e limitada aos campos estruturados do JSON.
+- Relatórios em `output/` não são versionados (apenas exemplos em `examples/`).
+
+## Documentação
 
 | Arquivo | Conteúdo |
 | --- | --- |
 | [`docs/ESTRUTURA-TRABALHO.md`](docs/ESTRUTURA-TRABALHO.md) | Plano de fases e arquitetura |
+| [`docs/prompts.md`](docs/prompts.md) | Registro de prompts (planejar / implementar / corrigir + sistema) |
 | [`docs/apresentacao/slides.md`](docs/apresentacao/slides.md) | Slides da proposta (critério 4) |
 | [`docs/CHECKLIST-ENTREGA.md`](docs/CHECKLIST-ENTREGA.md) | Checklist do enunciado |
+| [`examples/entrada.md`](examples/entrada.md) | Exemplos de entrada + 10 fontes |
+| [`examples/saida.md`](examples/saida.md) | Trechos de saída |
 
 ## CI/CD e Conventional Commits
 
-Este repositório usa **GitHub Actions** para:
+GitHub Actions:
 
-- executar testes em Python 3.10–3.12 em todo push/PR para `main`;
-- validar mensagens de commit com [Conventional Commits](https://www.conventionalcommits.org/);
-- validar o título dos Pull Requests no mesmo padrão.
+- testes em Python 3.10–3.12 em push/PR para `main`;
+- commitlint (Conventional Commits);
+- validação do título de Pull Requests.
 
-### Formato das mensagens
+Formato: `<type>(<scope opcional>): <descrição>`
 
-```
-<type>(<scope opcional>): <descrição>
-```
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
 
-Types aceitos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+## Apresentação
 
-Exemplos:
-
-```
-feat: adiciona fluxo inicial do agente
-fix: corrige falha na validação de entrada
-ci: configura commitlint no GitHub Actions
-docs: documenta padrão de commits
-```
-
-### Fluxo recomendado com branches
-
-```bash
-git checkout -b feat/nome-da-feature
-# ... alterações ...
-git commit -m "feat: descreve a mudança"
-git push -u origin HEAD
-# abra um Pull Request com título no mesmo padrão
-```
+Slides: [`docs/apresentacao/slides.md`](docs/apresentacao/slides.md).
