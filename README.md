@@ -4,7 +4,9 @@ Agente em **LangGraph** que transforma dados técnicos mockados (deploys, incide
 
 **Repositório:** [github.com/henriqueferraz/mini-projeto-02](https://github.com/henriqueferraz/mini-projeto-02)
 
-> Status: Fases 0–5 concluídas (agente + documentação). Resta polimento/AVA (Fase 6).
+> Status: Fases 0–6 concluídas no repositório (público). **Entrega final:** submeter o link no AVA até **20/07/2026** e não alterar o repo após a submissão.
+
+**Link para o AVA:** https://github.com/henriqueferraz/mini-projeto-02
 
 ## Problema
 

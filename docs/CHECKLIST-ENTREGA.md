@@ -1,8 +1,11 @@
 # Checklist final de entrega (enunciado §7)
 
-Prazo: **20/07/2026**. Submissão AVA na Fase 6.
+Prazo: **20/07/2026**.
 
-**Repositório:** [https://github.com/henriqueferraz/mini-projeto-02](https://github.com/henriqueferraz/mini-projeto-02)
+**Link do repositório (submeter no AVA):**  
+https://github.com/henriqueferraz/mini-projeto-02
+
+> Repositório **público** na `main`, com histórico semântico das Fases 0–6.
 
 ## Repositório e organização
 
@@ -10,8 +13,8 @@ Prazo: **20/07/2026**. Submissão AVA na Fase 6.
 - [x] O repositório contém o código-fonte completo do agente.
 - [x] O projeto está organizado e possui histórico de commits compatível com o desenvolvimento.
 - [x] Projeto individual — contribuição rastreável no histórico do aluno.
-- [x] Commits semânticos das fases 0–5 resolvidos na `main`.
-- [ ] Push final da `main` após polimento (Fase 6) — se ainda houver commits locais.
+- [x] Commits semânticos das fases 0–6 resolvidos na `main`.
+- [x] Push da `main` publicado em https://github.com/henriqueferraz/mini-projeto-02.
 
 ## Agente e implementação
 
@@ -41,11 +44,11 @@ Prazo: **20/07/2026**. Submissão AVA na Fase 6.
 
 - [x] Até 2 slides em `docs/apresentacao/slides.md`.
 - [x] Slides com problema, agente, entrada, saída, ferramenta e fluxo.
-- [ ] Submeter slides via AVA **ou** confirmar que versionados no repo bastam (conforme professor).
+- [x] Apresentação versionada no repositório (confirmar com o professor se basta ou se há upload no AVA).
 
-## Submissão
+## Submissão (ação manual do aluno)
 
-- [ ] Submeter o link do repositório GitHub no AVA.
-- [ ] Conferir se o link está acessível antes da submissão.
-- [ ] Entregar antes do prazo.
+- [ ] Submeter o link do repositório GitHub no AVA: https://github.com/henriqueferraz/mini-projeto-02
+- [ ] Conferir se o link está acessível (repo público) antes da submissão.
+- [ ] Entregar antes do prazo (**20/07/2026**).
 - [ ] Não modificar o repositório após a entrega até receber a nota.
