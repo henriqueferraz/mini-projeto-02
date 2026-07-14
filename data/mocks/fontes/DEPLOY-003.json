@@ -1,0 +1,52 @@
+{
+  "id": "DEPLOY-003",
+  "tipo": "deploy",
+  "titulo": "Produção com rollback — spike de 5xx no gateway",
+  "ambiente": "producao",
+  "servico": "gateway",
+  "versao": "4.2.1",
+  "status": "rollback",
+  "iniciado_em": "2026-07-09T09:10:00Z",
+  "finalizado_em": "2026-07-09T09:48:00Z",
+  "responsavel": "squad-platform",
+  "resumo": "Deploy do gateway gerou spike de 5xx; rollback automático para 4.2.0 em 12 minutos.",
+  "eventos": [
+    {
+      "ts": "2026-07-09T09:10:00Z",
+      "nivel": "info",
+      "msg": "Deploy blue/green iniciado."
+    },
+    {
+      "ts": "2026-07-09T09:21:00Z",
+      "nivel": "error",
+      "msg": "Taxa de 5xx > 5% por 3 minutos consecutivos."
+    },
+    {
+      "ts": "2026-07-09T09:24:00Z",
+      "nivel": "warn",
+      "msg": "Alarme SLO disparado; gatilho de rollback acionado."
+    },
+    {
+      "ts": "2026-07-09T09:36:00Z",
+      "nivel": "info",
+      "msg": "Tráfego restabelecido na versão 4.2.0."
+    }
+  ],
+  "metricas_observadas": {
+    "taxa_erro_pct": 7.8,
+    "latencia_p95_ms": 1450,
+    "disponibilidade_pct": 96.2
+  },
+  "impacto": "Interrupção parcial de rotas autenticadas por ~15 minutos.",
+  "acoes_tomadas": [
+    "Rollback automático",
+    "Post-mortem agendado",
+    "Bloquear novo deploy até correção do regressão de timeout upstream"
+  ],
+  "tags": [
+    "rollback",
+    "5xx",
+    "gateway",
+    "producao"
+  ]
+}

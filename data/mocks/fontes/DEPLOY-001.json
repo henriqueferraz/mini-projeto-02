@@ -1,0 +1,51 @@
+{
+  "id": "DEPLOY-001",
+  "tipo": "deploy",
+  "titulo": "Deploy parcial em produção — healthcheck timeout",
+  "ambiente": "producao",
+  "servico": "api-pagamentos",
+  "versao": "2.14.3",
+  "status": "parcial",
+  "iniciado_em": "2026-07-08T11:05:00Z",
+  "finalizado_em": "2026-07-08T11:42:00Z",
+  "responsavel": "squad-cobrancas",
+  "resumo": "Rollout canário a 25% interrompido após timeout no healthcheck HTTP /ready.",
+  "eventos": [
+    {
+      "ts": "2026-07-08T11:05:00Z",
+      "nivel": "info",
+      "msg": "Pipeline de deploy iniciado (imagem ghcr.io/org/api-pagamentos:2.14.3)."
+    },
+    {
+      "ts": "2026-07-08T11:18:00Z",
+      "nivel": "info",
+      "msg": "Tráfego canário em 25% das réplicas."
+    },
+    {
+      "ts": "2026-07-08T11:27:00Z",
+      "nivel": "error",
+      "msg": "Healthcheck /ready timeout após 5s (limite: 2s)."
+    },
+    {
+      "ts": "2026-07-08T11:35:00Z",
+      "nivel": "warn",
+      "msg": "Rollout pausado; tráfego mantido na versão 2.14.2."
+    }
+  ],
+  "metricas_observadas": {
+    "taxa_erro_pct": 2.4,
+    "latencia_p95_ms": 890,
+    "disponibilidade_pct": 98.7
+  },
+  "impacto": "Aumento temporário de latência e erros 503 em cobranças durante o canário.",
+  "acoes_tomadas": [
+    "Pausa do rollout",
+    "Investigação de dependência Redis lenta no probe",
+    "Abrir incidente correlato se persistir"
+  ],
+  "tags": [
+    "canary",
+    "healthcheck",
+    "producao"
+  ]
+}

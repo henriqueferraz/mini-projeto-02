@@ -1,0 +1,34 @@
+{
+  "id": "SPRINT-002",
+  "tipo": "sprint",
+  "titulo": "Sprint Identity — entrega baixa 21/35",
+  "time": "Identity",
+  "sprint": "2026-S27",
+  "inicio": "2026-06-29",
+  "fim": "2026-07-10",
+  "pontos_planejados": 35,
+  "pontos_entregues": 21,
+  "itens_concluidos": 5,
+  "itens_planejados": 10,
+  "resumo": "Capacidade reduzida por suporte ao incidente TLS e revisão de rotação JWT.",
+  "destaques": [
+    "Rotação JWT validada em staging (DEPLOY-002)"
+  ],
+  "impedimentos": [
+    "Incidente P1 de TLS consumiu 2 engenheiros por 1,5 dia",
+    "Escopo de MFA superestimado"
+  ],
+  "riscos": [
+    "Atraso na promoção da rotação JWT para produção",
+    "Baixa previsibilidade do time nesta sprint"
+  ],
+  "proximos_passos": [
+    "Replanejar MFA em fatias menores",
+    "Reservar buffer para on-call na próxima sprint"
+  ],
+  "tags": [
+    "sprint",
+    "identity",
+    "baixa-entrega"
+  ]
+}

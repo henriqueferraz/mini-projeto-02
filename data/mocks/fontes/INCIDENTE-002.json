@@ -1,0 +1,40 @@
+{
+  "id": "INCIDENTE-002",
+  "tipo": "incidente",
+  "titulo": "P1 — falha de certificado TLS no gateway",
+  "severidade": "P1",
+  "status": "resolvido",
+  "servico": "gateway",
+  "aberto_em": "2026-07-05T08:05:00Z",
+  "mitigado_em": "2026-07-05T08:28:00Z",
+  "fechado_em": "2026-07-05T10:00:00Z",
+  "responsavel": "squad-platform",
+  "resumo": "Certificado TLS do edge expirou; clientes receberam erros de handshake.",
+  "timeline": [
+    {
+      "ts": "2026-07-05T08:05:00Z",
+      "evento": "Queda abrupta de disponibilidade no gateway."
+    },
+    {
+      "ts": "2026-07-05T08:12:00Z",
+      "evento": "Diagnóstico: certificado expirado há 11 minutos."
+    },
+    {
+      "ts": "2026-07-05T08:28:00Z",
+      "evento": "Certificado renovado e redistribuído."
+    }
+  ],
+  "causa_raiz": "Renovação automática falhou por permissão IAM incompleta no job de cert-manager.",
+  "impacto": "Indisponibilidade total de APIs públicas por ~23 minutos.",
+  "acoes_corretivas": [
+    "Corrigir IAM do cert-manager",
+    "Alerta com 15 dias de antecedência",
+    "Drill de renovação no runbook"
+  ],
+  "tags": [
+    "p1",
+    "tls",
+    "gateway",
+    "disponibilidade"
+  ]
+}

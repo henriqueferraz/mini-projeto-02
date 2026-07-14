@@ -1,0 +1,40 @@
+{
+  "id": "INCIDENTE-001",
+  "tipo": "incidente",
+  "titulo": "P2 — latência elevada no checkout",
+  "severidade": "P2",
+  "status": "mitigado",
+  "servico": "api-checkout",
+  "aberto_em": "2026-07-06T13:40:00Z",
+  "mitigado_em": "2026-07-06T14:25:00Z",
+  "fechado_em": null,
+  "responsavel": "squad-checkout",
+  "resumo": "Latência p95 do checkout subiu por query lenta em banco de pedidos sem índice.",
+  "timeline": [
+    {
+      "ts": "2026-07-06T13:40:00Z",
+      "evento": "Alerta de latência p95 > 800ms."
+    },
+    {
+      "ts": "2026-07-06T13:55:00Z",
+      "evento": "Identificada query full-scan em pedidos_abertos."
+    },
+    {
+      "ts": "2026-07-06T14:25:00Z",
+      "evento": "Índice criado e latência normalizada."
+    }
+  ],
+  "causa_raiz": "Ausência de índice composto (usuario_id, status) após migração recente.",
+  "impacto": "Checkout ~2.1x mais lento para ~18% dos usuários por 45 minutos.",
+  "acoes_corretivas": [
+    "Criar índice",
+    "Adicionar regressão de query no CI",
+    "Revisar plano de migração"
+  ],
+  "tags": [
+    "p2",
+    "latencia",
+    "checkout",
+    "db"
+  ]
+}

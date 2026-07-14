@@ -1,0 +1,47 @@
+{
+  "id": "DEPLOY-004",
+  "tipo": "deploy",
+  "titulo": "Produção parcial — fila SQS elevada",
+  "ambiente": "producao",
+  "servico": "api-notificacoes",
+  "versao": "3.5.1",
+  "status": "parcial",
+  "iniciado_em": "2026-07-10T18:00:00Z",
+  "finalizado_em": "2026-07-10T18:55:00Z",
+  "responsavel": "squad-engagement",
+  "resumo": "Deploy concluído, mas fila SQS de e-mails acumulou acima do limite operacional.",
+  "eventos": [
+    {
+      "ts": "2026-07-10T18:00:00Z",
+      "nivel": "info",
+      "msg": "Deploy de consumers iniciados com nova política de retry."
+    },
+    {
+      "ts": "2026-07-10T18:30:00Z",
+      "nivel": "warn",
+      "msg": "ApproximateNumberOfMessagesVisible > 12_000."
+    },
+    {
+      "ts": "2026-07-10T18:45:00Z",
+      "nivel": "warn",
+      "msg": "Latência de entrega de e-mail p95 acima de 8 min."
+    }
+  ],
+  "metricas_observadas": {
+    "taxa_erro_pct": 1.6,
+    "latencia_p95_ms": 620,
+    "disponibilidade_pct": 99.1,
+    "fila_sqs_mensagens": 12840
+  },
+  "impacto": "Atraso em notificações transacionais (confirmação de pedido).",
+  "acoes_tomadas": [
+    "Scale-out temporário de consumers",
+    "Revisar backoff do novo retry",
+    "Monitorar drain da fila por 2h"
+  ],
+  "tags": [
+    "sqs",
+    "parcial",
+    "notificacoes"
+  ]
+}

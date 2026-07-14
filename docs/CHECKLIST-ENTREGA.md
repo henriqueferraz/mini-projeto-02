@@ -1,11 +1,11 @@
 # Checklist final de entrega (enunciado §7)
 
-Prazo: **20/07/2026**. Itens de implementação e AVA ficam pendentes até as Fases 2–6.
+Prazo: **20/07/2026**. Itens de LangGraph/LLM/AVA ficam pendentes até as Fases 3–6.
 
 ## Repositório e organização
 
 - [x] Criei o repositório no GitHub e ele está acessível para avaliação.
-- [ ] O repositório contém o código-fonte completo do agente (Fases 2–4).
+- [ ] O repositório contém o código-fonte completo do agente (Fases 3–4).
 - [x] O projeto está organizado e possui histórico de commits compatível com o desenvolvimento.
 - [x] Projeto individual — contribuição rastreável no histórico do aluno.
 - [ ] Commits semânticos das fases 0–5 resolvidos na `main`.
@@ -21,8 +21,8 @@ Prazo: **20/07/2026**. Itens de implementação e AVA ficam pendentes até as Fa
 
 ## Ferramentas, contexto e validação
 
-- [ ] Ferramenta integrada (`read_mock_file` / `write_report`).
-- [ ] Ação real em disco (não só simulada).
+- [x] Ferramenta integrada (`read_mock_file` / `write_report`).
+- [x] Ação real em disco (não só simulada).
 - [ ] Contexto/memória no estado (`messages`, `raw_source`, `analysis`, etc.).
 - [ ] Validação de entrada, path da ferramenta e seções do relatório.
 - [x] Sem chaves/tokens versionados (`.env` no `.gitignore`; `.env.example` vazio).

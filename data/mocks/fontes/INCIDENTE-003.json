@@ -1,0 +1,40 @@
+{
+  "id": "INCIDENTE-003",
+  "tipo": "incidente",
+  "titulo": "P3 — 401 intermitente em pagamentos (JWKS)",
+  "severidade": "P3",
+  "status": "em_investigacao",
+  "servico": "api-pagamentos",
+  "aberto_em": "2026-07-11T16:10:00Z",
+  "mitigado_em": null,
+  "fechado_em": null,
+  "responsavel": "squad-cobrancas",
+  "resumo": "Picos de HTTP 401 correlacionados a refresh de JWKS no api-auth.",
+  "timeline": [
+    {
+      "ts": "2026-07-11T16:10:00Z",
+      "evento": "Aumento de 401 em /cobrancas."
+    },
+    {
+      "ts": "2026-07-11T16:40:00Z",
+      "evento": "Hipótese: cache JWKS stale durante overlap de chaves."
+    },
+    {
+      "ts": "2026-07-11T17:15:00Z",
+      "evento": "Coleta de traces em andamento; impacto residual baixo."
+    }
+  ],
+  "causa_raiz": null,
+  "impacto": "Falhas esporádicas (~0.4% das requisições autenticadas) em cobranças.",
+  "acoes_corretivas": [
+    "Aumentar TTL de overlap de chaves em staging",
+    "Instrumentar métrica jwks_refresh_errors",
+    "Manter incidente aberto até confirmação"
+  ],
+  "tags": [
+    "p3",
+    "401",
+    "jwks",
+    "investigacao"
+  ]
+}

@@ -4,7 +4,7 @@
 **Peso:** 30% da nota do módulo  
 **Modalidade:** individual (1 aluno)  
 **Stack obrigatória:** LangGraph + pelo menos 1 ferramenta real + estado/contexto + documentação  
-**Status do sistema:** Fases 0–1 concluídas; Fases 2–6 pendentes
+**Status do sistema:** Fases 0–2 concluídas; Fases 3–6 pendentes
 
 ---
 
@@ -240,13 +240,13 @@ Seções obrigatórias, tom do texto e regras gerais usadas por `use_tool` / `ge
 
 **Objetivo:** ferramenta real + mocks (PRIORIDADE).
 
-- [ ] Criar JSONs em `data/mocks/` (fontes iniciais, métricas, template)
-- [ ] Implementar `tools/read_mock_file.py` (lê JSON, valida path)
-- [ ] Implementar `tools/write_report.py` (grava em `output/` via `config.OUTPUT_DIR`)
-- [ ] Restringir leitura a `data/mocks/` (segurança)
-- [ ] Testar leitura/escrita sem LLM
-- [ ] Commit: `feat: adiciona mocks e ferramentas de leitura/escrita`
-- [ ] Ampliação posterior: **10 fontes** + métricas dos novos serviços + `tests/test_fontes_mocks.py`
+- [x] Criar JSONs em `data/mocks/` (fontes iniciais, métricas, template)
+- [x] Implementar `tools/read_mock_file.py` (lê JSON, valida path)
+- [x] Implementar `tools/write_report.py` (grava em `output/` via `config.OUTPUT_DIR`)
+- [x] Restringir leitura a `data/mocks/` (segurança)
+- [x] Testar leitura/escrita sem LLM
+- [x] Commit: `feat: adiciona mocks e ferramentas de leitura/escrita`
+- [x] Ampliação posterior: **10 fontes** + métricas dos novos serviços + `tests/test_fontes_mocks.py`
 
 **Entrega:** ferramenta age de verdade sobre arquivos mockados.
 
@@ -331,7 +331,7 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 - [x] `chore: inicializa estrutura do projeto`
 - [x] `docs: adiciona proposta e slides da ideia`
-- [ ] `feat: adiciona mocks e ferramentas de leitura/escrita`
+- [x] `feat: adiciona mocks e ferramentas de leitura/escrita`
 - [ ] `feat: completa fluxo LangGraph com LLM e geracao de relatorios`
 - [ ] `docs: completa README, prompts, exemplos e checklist de entrega`
 - [ ] `docs: ajusta checklist de entrega e link no README`
@@ -339,8 +339,8 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 **Pendências de versão (working tree / a commitar se ainda não versionado):**
 
-- Fases 2–5 ainda não implementadas no código (scaffold + estrutura de pastas da Fase 0; proposta/slides da Fase 1)
-- Ampliação futura: 10 fontes + métricas + testes
+- Fases 3–5 ainda não implementadas (estado/LangGraph, LLM, documentação completa)
+- Ampliação de fontes/mocks: concluída na Fase 2 (10 fontes)
 
 **Entrega final:** link submetido no AVA.
 
@@ -363,15 +363,15 @@ Detalhes: `README.md` (seções “Início rápido” e “Problemas comuns”).
 
 ## 7. Ritmo sugerido (projeto individual)
 
-1. Fases **0–1** — concluídas (estrutura + proposta/slides).
-2. Fases **2 → 5** — pendentes (mocks → LangGraph → LLM → docs).
+1. Fases **0–2** — concluídas (estrutura + proposta/slides + mocks/ferramentas).
+2. Fases **3 → 5** — pendentes (LangGraph → LLM → docs).
 3. Fase **6** — push no GitHub + submissão no AVA (após as fases anteriores).
 
 ---
 
 ## 8. Ordem de execução imediata (entrega)
 
-1. Concluir Fases 2–5 (mocks → grafo → LLM → documentação).
+1. Concluir Fases 3–5 (grafo → LLM → documentação).
 2. Versionar e polir (Fase 6) com commits semânticos na `main`.
 3. `git push origin main`.
 4. Testar o link do repositório (acesso público ou liberado ao professor).
@@ -439,7 +439,8 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | --- | --- |
 | Estrutura de pastas + `requirements.txt` + `.env.example` (Fase 0) | Sim — concluída |
 | Proposta + slides (`README` + `docs/apresentacao/slides.md`) | Sim — Fase 1 |
-| 10 fontes mockadas + testes `test_fontes_mocks` | Planejado (Fase 2) |
+| 10 fontes mockadas + testes `test_fontes_mocks` | Sim — Fase 2 |
+| Ferramentas `read_mock_file` / `write_report` | Sim — Fase 2 |
 | LLM + fallback heurístico | Planejado (Fase 4) |
 | Rotas condicionais no grafo | Planejado (Fases 3–4) |
 | `OPENAI_MODEL` / `.env.example` | Sim (Fase 0) |
@@ -447,4 +448,4 @@ def exemplo(fonte: str, tipo: str | None = None) -> dict:
 | README onboarding / troubleshooting | Planejado (Fase 5) |
 | Docstrings Google PT | Planejado (Fases 3–5 + seção 10) |
 | markdownlint no projeto | Arquivos locais presentes; versionar na Fase 5 |
-| Pendência só push + AVA | Não — faltam Fases 2–6 |
+| Pendência só push + AVA | Não — faltam Fases 3–6 |

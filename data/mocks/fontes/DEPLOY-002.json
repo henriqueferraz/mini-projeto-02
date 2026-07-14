@@ -1,0 +1,45 @@
+{
+  "id": "DEPLOY-002",
+  "tipo": "deploy",
+  "titulo": "Deploy staging OK — rotação de JWT",
+  "ambiente": "staging",
+  "servico": "api-auth",
+  "versao": "1.9.0",
+  "status": "sucesso",
+  "iniciado_em": "2026-07-07T15:00:00Z",
+  "finalizado_em": "2026-07-07T15:22:00Z",
+  "responsavel": "squad-identity",
+  "resumo": "Deploy de rotação de chaves JWT concluído sem regressão nos smoke tests.",
+  "eventos": [
+    {
+      "ts": "2026-07-07T15:00:00Z",
+      "nivel": "info",
+      "msg": "Deploy staging iniciado."
+    },
+    {
+      "ts": "2026-07-07T15:12:00Z",
+      "nivel": "info",
+      "msg": "JWKS atualizado; chave anterior mantida por 24h (overlap)."
+    },
+    {
+      "ts": "2026-07-07T15:22:00Z",
+      "nivel": "info",
+      "msg": "Smoke tests de login/refresh passaram (12/12)."
+    }
+  ],
+  "metricas_observadas": {
+    "taxa_erro_pct": 0.1,
+    "latencia_p95_ms": 120,
+    "disponibilidade_pct": 99.99
+  },
+  "impacto": "Nenhum impacto negativo observado em staging.",
+  "acoes_tomadas": [
+    "Validar overlap de chaves",
+    "Agendar janela de promoção para produção"
+  ],
+  "tags": [
+    "jwt",
+    "staging",
+    "sucesso"
+  ]
+}

@@ -2,7 +2,7 @@
 
 Agente em **LangGraph** que transforma dados técnicos mockados (deploys, incidentes e sprints) em relatórios estruturados e acionáveis.
 
-> Status: Fase 0 (setup) e Fase 1 (proposta + slides) concluídas. Implementação do fluxo nas fases seguintes — ver `docs/ESTRUTURA-TRABALHO.md`.
+> Status: Fases 0–2 concluídas (setup, proposta/slides, mocks + ferramentas de I/O). Próximo: fluxo LangGraph (Fase 3).
 
 ## Problema
 

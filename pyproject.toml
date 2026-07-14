@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "Mini-Projeto Avaliativo - Módulo 2"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "langgraph",
+    "langchain",
+    "langchain-openai",
+    "python-dotenv",
+]
 
 [project.optional-dependencies]
 dev = [

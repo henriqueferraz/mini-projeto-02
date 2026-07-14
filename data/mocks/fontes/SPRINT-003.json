@@ -1,0 +1,31 @@
+{
+  "id": "SPRINT-003",
+  "tipo": "sprint",
+  "titulo": "Sprint Platform — entrega 40/40",
+  "time": "Platform",
+  "sprint": "2026-S27",
+  "inicio": "2026-06-29",
+  "fim": "2026-07-10",
+  "pontos_planejados": 40,
+  "pontos_entregues": 40,
+  "itens_concluidos": 8,
+  "itens_planejados": 8,
+  "resumo": "Sprint 100% concluída; foco em resiliência do gateway e automação de certificados.",
+  "destaques": [
+    "Automação de renovação TLS após INCIDENTE-002",
+    "Playbook de rollback do gateway revisado"
+  ],
+  "impedimentos": [],
+  "riscos": [
+    "Regressão residual do deploy 4.2.1 ainda sob análise"
+  ],
+  "proximos_passos": [
+    "Liberar hotfix do gateway",
+    "Compartilhar aprendizado do P1 com demais squads"
+  ],
+  "tags": [
+    "sprint",
+    "platform",
+    "entrega-completa"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "versao": "1.0.0",
+  "nome": "relatorio_tecnico",
+  "descricao": "Template padrão de relatório técnico do agente.",
+  "tom": "objetivo, técnico e acionável; evite jargão desnecessário",
+  "idioma": "pt-BR",
+  "secoes_obrigatorias": [
+    {
+      "id": "sumario_executivo",
+      "titulo": "Sumário executivo",
+      "obrigatoria": true
+    },
+    {
+      "id": "contexto",
+      "titulo": "Contexto / fatos relevantes",
+      "obrigatoria": true
+    },
+    {
+      "id": "analise_tecnica",
+      "titulo": "Análise técnica",
+      "obrigatoria": true
+    },
+    {
+      "id": "riscos_impactos",
+      "titulo": "Riscos e impactos",
+      "obrigatoria": true
+    },
+    {
+      "id": "recomendacoes",
+      "titulo": "Recomendações",
+      "obrigatoria": true
+    },
+    {
+      "id": "metadados",
+      "titulo": "Metadados",
+      "obrigatoria": true
+    }
+  ],
+  "regras_gerais": [
+    "Toda seção obrigatória deve estar presente e não vazia.",
+    "Citar a fonte (ID) e o modo de análise (llm|heuristic) nos metadados.",
+    "Recomendações devem ser acionáveis e priorizadas quando possível.",
+    "Não inventar métricas ausentes nos mocks; declarar lacunas explicitamente."
+  ],
+  "metadados_esperados": [
+    "fonte",
+    "data",
+    "tipo",
+    "analysis_modo",
+    "template_versao"
+  ]
+}

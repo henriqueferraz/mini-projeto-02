@@ -1,0 +1,33 @@
+{
+  "id": "SPRINT-001",
+  "tipo": "sprint",
+  "titulo": "Sprint Cobranças — entrega 36/42",
+  "time": "Cobrancas",
+  "sprint": "2026-S27",
+  "inicio": "2026-06-29",
+  "fim": "2026-07-10",
+  "pontos_planejados": 42,
+  "pontos_entregues": 36,
+  "itens_concluidos": 9,
+  "itens_planejados": 11,
+  "resumo": "Entrega sólida com atraso em 2 cards de conciliação por dependência do worker.",
+  "destaques": [
+    "API de estorno v2 em produção",
+    "Melhoria de observabilidade em retries"
+  ],
+  "impedimentos": [
+    "worker-conciliacao com backlog elevado na semana 2"
+  ],
+  "riscos": [
+    "Débito técnico em testes de contrato com gateway"
+  ],
+  "proximos_passos": [
+    "Priorizar cards remanescentes de conciliação",
+    "Revisar SLO com Platform"
+  ],
+  "tags": [
+    "sprint",
+    "cobrancas",
+    "entrega"
+  ]
+}

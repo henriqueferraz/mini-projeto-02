@@ -1,0 +1,48 @@
+{
+  "janela": "ultimos_7_dias",
+  "atualizado_em": "2026-07-14T09:00:00Z",
+  "servicos": {
+    "api-pagamentos": {
+      "latencia_p95_ms": 410,
+      "taxa_erro_pct": 0.9,
+      "disponibilidade_pct": 99.4,
+      "rps_medio": 180
+    },
+    "api-checkout": {
+      "latencia_p95_ms": 520,
+      "taxa_erro_pct": 0.6,
+      "disponibilidade_pct": 99.6,
+      "rps_medio": 95
+    },
+    "gateway": {
+      "latencia_p95_ms": 180,
+      "taxa_erro_pct": 1.2,
+      "disponibilidade_pct": 98.9,
+      "rps_medio": 900
+    },
+    "api-auth": {
+      "latencia_p95_ms": 95,
+      "taxa_erro_pct": 0.2,
+      "disponibilidade_pct": 99.95,
+      "rps_medio": 320
+    },
+    "api-notificacoes": {
+      "latencia_p95_ms": 300,
+      "taxa_erro_pct": 1.1,
+      "disponibilidade_pct": 99.2,
+      "rps_medio": 140,
+      "fila_sqs_media": 4200
+    },
+    "worker-conciliacao": {
+      "latencia_p95_ms": 1500,
+      "taxa_erro_pct": 2.0,
+      "disponibilidade_pct": 98.5,
+      "jobs_pendentes_medio": 650
+    }
+  },
+  "limites_alerta": {
+    "latencia_p95_ms": 500,
+    "taxa_erro_pct": 1.0,
+    "disponibilidade_min_pct": 99.5
+  }
+}
