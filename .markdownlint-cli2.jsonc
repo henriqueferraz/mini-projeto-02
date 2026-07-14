@@ -1,0 +1,12 @@
+{
+  // Config compartilhada: VS Code (markdownlint) e CLI (markdownlint-cli2)
+  "config": {
+    "extends": "./.markdownlint.json"
+  },
+  "ignores": [
+    "output/**",
+    "**/Mini-Projeto Avaliativo - Módulo 2 .md",
+    "node_modules/**",
+    ".venv/**"
+  ]
+}
